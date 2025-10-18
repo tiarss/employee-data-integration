@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
@@ -11,36 +12,43 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log('Response:', response.status, response.config.url)
 
     return response
   },
   (error) => {
     if (error.response) {
-      const { status, data } = error.response
-
-      console.error('Response Error:', status, data)
+      const { status } = error.response
 
       switch (status) {
+        case 209:
+          toast.error('Multiple Choices')
+          break
+        case 400:
+          toast.error('Bad Request')
+          break
         case 401:
-          console.error('Unauthorized')
+          toast.error('Unauthorized')
           break
         case 403:
-          console.error('Access forbidden')
+          toast.error('Access forbidden')
           break
         case 404:
-          console.error('Resource not found')
+          toast.error('Resource not found')
+          break
+        case 409:
+          toast.error('Conflict')
           break
         case 500:
-          console.error('Internal server error')
+          toast.error('Internal server error')
           break
         default:
-          console.error('An error occurred')
+          toast.error('An error occurred')
+          break
       }
     } else if (error.request) {
-      console.error('Network Error:', error.request)
+      toast.error('Network Error')
     } else {
-      console.error('Error:', error.message)
+      toast.error('Error:' + error.message) 
     }
 
     return Promise.reject(error)
