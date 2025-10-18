@@ -3,7 +3,7 @@ import useForm from "./useForm"
 
 
 const FormAdd = ({ onSubmit }: { onSubmit: () => void }) => {
-    const { formData, handleSubmit, error, touched, setFormData, setError, setTouched, setHobbyInput, hobbyInput } = useForm({ onSubmit })
+    const { formData, handleSubmit, error, touched, setFormData, setError, setTouched, setHobbyInput, hobbyInput, isLoading } = useForm({ onSubmit })
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
@@ -167,8 +167,8 @@ const FormAdd = ({ onSubmit }: { onSubmit: () => void }) => {
                 </select>
                 {touched.department && error.department && <p className="text-red-600 text-sm m-0 mt-1">{error.department}</p>}
             </div>
-            <Button type="submit" className="w-full" disabled={!formData.name || !formData.age || !formData.gender || !formData.hobby || !formData.department}>
-                Submit
+            <Button type="submit" className="w-full" disabled={isLoading || !formData.name || !formData.age || !formData.gender || !formData.hobby || !formData.department}>
+                {isLoading ? "Loading..." : "Submit"}
             </Button>
         </form>
     )

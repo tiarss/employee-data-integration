@@ -23,6 +23,7 @@ axiosInstance.interceptors.response.use(
 
       switch (status) {
         case 401:
+          
           break
         case 403:
           console.error('Access forbidden')

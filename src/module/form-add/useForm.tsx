@@ -4,6 +4,7 @@ import { createUser } from "../../service/user"
 import { useQueryClient } from "@tanstack/react-query"
 
 const useForm = ({ onSubmit }: { onSubmit: () => void }) => {
+    const [isLoading, setIsLoading] = useState<boolean>();
     const queryClient = useQueryClient()
     const [touched, setTouched] = useState({
         name: false,
@@ -35,6 +36,7 @@ const useForm = ({ onSubmit }: { onSubmit: () => void }) => {
     })
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setIsLoading(true)
         e.preventDefault()
 
         if (!formData.name || !formData.age || !formData.gender || !formData.hobby || !formData.department) {
@@ -100,7 +102,9 @@ const useForm = ({ onSubmit }: { onSubmit: () => void }) => {
                 queryClient.invalidateQueries({ queryKey: ['userData'] })
                 onSubmit()
             }
+            setIsLoading(false)
         } catch (error) {
+            console.error(error);
             onSubmit()
             setFormData({
                 name: '',
@@ -123,6 +127,8 @@ const useForm = ({ onSubmit }: { onSubmit: () => void }) => {
                 hobby: false,
                 department: false,
             })
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -183,7 +189,8 @@ const useForm = ({ onSubmit }: { onSubmit: () => void }) => {
         setError,
         setTouched,
         setHobbyInput,
-        hobbyInput
+        hobbyInput,
+        isLoading
     }
 }
 
