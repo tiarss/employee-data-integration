@@ -25,26 +25,6 @@ const FormAdd = ({ onSubmit }: { onSubmit: () => void }) => {
                 {touched.name && error.name && <p className="text-red-600 text-sm m-0 mt-1">{error.name}</p>}
             </div>
             <div className="flex flex-col gap-2">
-                <label htmlFor="age" className="font-medium text-gray-700 text-sm">
-                    Age (Years)<span className="text-red-600">*</span>
-                </label>
-                <input
-                    type="number"
-                    id="age"
-                    name="age"
-                    placeholder="Enter your age"
-                    required
-                    value={formData.age}
-                    min={20}
-                    max={40}
-                    defaultValue={20}
-                    onChange={(e) => setFormData({ ...formData, age: Number(e.target.value) })}
-                    onFocus={() => setTouched({ ...touched, age: true })}
-                    className="p-3 border border-gray-300 rounded text-base font-inherit transition-colors focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 hover:border-gray-600"
-                />
-                {touched.age && error.age && <p className="text-red-600 text-sm m-0 mt-1">{error.age}</p>}
-            </div>
-            <div className="flex flex-col gap-2">
                 <label htmlFor="gender" className="font-medium text-gray-700 text-sm">
                     Gender<span className="text-red-600">*</span>
                 </label>
@@ -81,6 +61,26 @@ const FormAdd = ({ onSubmit }: { onSubmit: () => void }) => {
                     </label>
                 </div>
                 {touched.gender && error.gender && <p className="text-red-600 text-sm m-0 mt-1">{error.gender}</p>}
+            </div>
+            <div className="flex flex-col gap-2">
+                <label htmlFor="age" className="font-medium text-gray-700 text-sm">
+                    Age (Years)<span className="text-red-600">*</span>
+                </label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="Enter your age"
+                    required
+                    value={formData.age}
+                    min={20}
+                    max={40}
+                    defaultValue={20}
+                    onChange={(e) => setFormData({ ...formData, age: Number(e.target.value) })}
+                    onFocus={() => setTouched({ ...touched, age: true })}
+                    className="p-3 border border-gray-300 rounded text-base font-inherit transition-colors focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 hover:border-gray-600"
+                />
+                {touched.age && error.age && <p className="text-red-600 text-sm m-0 mt-1">{error.age}</p>}
             </div>
             <div className="flex flex-col gap-2">
                 <label htmlFor="hobby" className="font-medium text-gray-700 text-sm">
