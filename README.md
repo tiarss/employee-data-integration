@@ -79,10 +79,10 @@ The build output will be in the `dist/` directory.
 ```
 src/
     assets/          # Static assets
-   components/      # Reusable components
-   module/          # Feature modules
-   provider/        # Context providers
-   service/         # API services
-   App.tsx          # Main app component
-   main.tsx         # App entry point
+    components/      # Reusable components
+    module/          # Feature modules
+    provider/        # Context providers
+    service/         # API services
+    App.tsx          # Main app component
+    main.tsx         # App entry point
 ```
